@@ -1,0 +1,36 @@
+git --help
+git  config --list
+git config --global --list
+git config --global user.name 'New Name'
+
+cd c:
+cd gitlocal
+
+git status
+git init
+git add .
+git commit -m'first commit'
+git status
+git log
+
+внесли изменения в файл
+git status
+git commit -a -m'new comment'
+git log -p
+
+ctl+C выход из меню логов
+git log -2
+
+git reset HEAD readme.txt
+
+git remote add origin https://github.com/azureitstepkharkov/31pr12server.git
+
+git push -u origin master
+
+
+git clone
+git branch
+git branch dev1     git checkout -b dev1
+git branch
+git checkout dev1
+git branch -d dev1
