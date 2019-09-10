@@ -1,11 +1,9 @@
 // Pong.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-
 #include "pch.h"
-#include"StringHelper.h"
+#include "StringHelper.h"
 #include "MathHelper.h"
-//#include "OpenGLHelper.h"
-
+#include "OpenGLHelper.h"
 #include <string>
 #include <windows.h>
 #include <iostream>
@@ -17,9 +15,10 @@
 #include "GL/freeglut.h"
 //freeglut - производитель
 #pragma comment(lib, "Opengl32.lib")
-
-MathHelper mh;//Проблема паттерна Singleton 
-//OpenGLHelper oGl;
+// a few keycodes from 
+// http://msdn.microsoft.com/en-us/library/windows/desktop/dd375731%28v=vs.85%29.aspx
+MathHelper mh;//Проблема патерна Singleton
+//OpenGLHelper oGL;
 void keyboard() {
 	// left racket
 	if (GetAsyncKeyState(VK_W)) mh.racket_left_y += mh.racket_speed;
@@ -30,7 +29,6 @@ void keyboard() {
 	if (GetAsyncKeyState(VK_DOWN)) mh.racket_right_y -= mh.racket_speed;
 }
 
-//OGL
 void enable2D(int width, int height) {
 	glViewport(0, 0, width, height);
 	glMatrixMode(GL_PROJECTION);
@@ -48,41 +46,45 @@ void drawRect(float x, float y, float width, float height) {
 	glEnd();
 }
 void drawText(float x, float y, std::string text) {
-	glRasterPos2f(x, y);
+	oglRasterPos2f(x, y);
 	glutBitmapString(GLUT_BITMAP_8_BY_13, (const unsigned char*)text.c_str());
 }
-
-//для функций обратного вызова - требование библиотеки
-//OpenGL решение - механизм делегатов в языке C#
+//для функций обратного вызова - требование библиотеки 
+//OpenGL решение - механизм делигатов в языке C#
 void draw() {
 	// clear (has to be done at the beginning)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
-
-	// draw rackets
+				// draw rackets
 	drawRect(mh.racket_left_x, mh.racket_left_y, mh.racket_width, mh.racket_height);
 	drawRect(mh.racket_right_x, mh.racket_right_y, mh.racket_width, mh.racket_height);
 
 	// draw ball
 	drawRect(mh.ball_pos_x - mh.ball_size / 2, mh.ball_pos_y - mh.ball_size / 2, mh.ball_size, mh.ball_size);
+	
 	// draw score
-	drawText(width / 2 - 10, height - 15, 
-		StringHelper::int2str(score_left) + ":"
+
+	drawText(width / 2 - 10, height - 15,
+		StringHelper::int2str(score_left) + ":" 
 		+ StringHelper::int2str(score_right));
+
 	// swap buffers (has to be done at the end)
 	glutSwapBuffers();
 }
+
 void update(int value) {
 	// input handling
 	keyboard();
+
 	// update ball
 	mh.updateBall();
+
 	// Call update() again in 'interval' milliseconds
 	glutTimerFunc(interval, update, 0);
+
 	// Redisplay frame
 	glutPostRedisplay();
 }
-//
 int main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
@@ -91,11 +93,10 @@ int main(int argc, char** argv)
 	glutCreateWindow("Pong Example");
 	//Регистрация функций обратного вызова 
 	glutDisplayFunc(draw);
-	glutTimerFunc(interval,update, 0);
+	glutTimerFunc(interval, update, 0);
 	//установка размеров сцены и "базового" цвета
 	enable2D(width, height);
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glutMainLoop();
 	return 0;
 }
-

@@ -8,9 +8,6 @@
 
 #ifndef PCH_H
 #define PCH_H
-
-// a few keycodes from 
-// http://msdn.microsoft.com/en-us/library/windows/desktop/dd375731%28v=vs.85%29.aspx
 #define VK_W 0x57
 #define VK_S 0x53
 // window size and update rate (60 fps)
@@ -18,6 +15,6 @@ const int width = 434;
 const int height = 200;
 const int interval = 1000 / 60;
 
-
+// TODO: add headers that you want to pre-compile here
 
 #endif //PCH_H
