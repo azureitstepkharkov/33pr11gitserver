@@ -1,0 +1,8 @@
+void showSQLError(unsigned int handleType, const SQLHANDLE& handle)
+{
+	SQLCHAR SQLState[1024];
+	SQLCHAR message[1024];
+	if (SQL_SUCCESS == SQLGetDiagRec(handleType, handle, 1, SQLState, NULL, message, 1024, NULL))
+		// Returns the current values of multiple fields of a diagnostic record that contains error, warning, and status information
+		cout << "SQL driver message: " << message << "\nSQL state: " << SQLState << "." << endl;
+}
