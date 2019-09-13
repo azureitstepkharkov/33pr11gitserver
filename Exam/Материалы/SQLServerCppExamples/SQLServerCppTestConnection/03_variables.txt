@@ -1,0 +1,13 @@
+SQLHANDLE SQLEnvHandle = NULL;
+SQLHANDLE SQLConnectionHandle = NULL;
+SQLHANDLE SQLStatementHandle = NULL;
+SQLRETURN retCode = 0;
+char SQLQuery[] = "SELECT ???";
+
+
+SQLFreeHandle(SQL_HANDLE_STMT, SQLStatementHandle);
+	SQLDisconnect(SQLConnectionHandle);
+	SQLFreeHandle(SQL_HANDLE_DBC, SQLConnectionHandle);
+	SQLFreeHandle(SQL_HANDLE_ENV, SQLEnvHandle);
+	// Frees the resources and disconnects
+	

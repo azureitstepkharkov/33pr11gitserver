@@ -1,0 +1,3 @@
+https://github.com/microsoft/VCSamples
+
+https://docs.microsoft.com/en-us/azure/sql-database/sql-database-develop-cplusplus-simple
