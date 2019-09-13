@@ -1,17 +1,21 @@
 #pragma once
 #include<string>
+#include"AnimalEntity.h"
 using namespace std;
-class HumanEntity
+class HumanEntity:public AnimalEntity
 {
 protected:
 	string Name;
 	string Surname;
-protected:
+
+public://protected:
 	HumanEntity() {};
 	HumanEntity(HumanEntity& human) {};
 
 public:
-	HumanEntity(string name, string surname, string sex, unsigned int age);
+
+	HumanEntity(string name, string surname, //человек
+					bool sex, unsigned int age);//животное
 	HumanEntity(string name, string surname);
 	
 	friend ostream& operator<<(ostream& out_data, HumanEntity& man);

@@ -147,11 +147,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AdressInfo.h" />
+    <ClInclude Include="AnimalEntity.h" />
+    <ClInclude Include="Department.h" />
+    <ClInclude Include="Employee.h" />
+    <ClInclude Include="HumanEntity.h" />
+    <ClInclude Include="Person.h" />
+    <ClInclude Include="Phone.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AdressInfo.cpp" />
+    <ClCompile Include="AnimalEntity.cpp" />
+    <ClCompile Include="Department.cpp" />
+    <ClCompile Include="Employee.cpp" />
     <ClCompile Include="ExamKhodakova.cpp" />
+    <ClCompile Include="HumanEntity.cpp" />
+    <ClCompile Include="Person.cpp" />
+    <ClCompile Include="Phone.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
