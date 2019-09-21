@@ -12,6 +12,10 @@ protected:
 	AdressInfo*  adr;
 	Person() {};
 public:
+	Person(string Fname, string Lname) : HumanEntity(Fname, Lname, 18, 1)
+	{
+		this->phone = "no phone";
+	}
 	Person(string phone,
 		string city,
 		string street,
@@ -22,9 +26,31 @@ public:
 		int age,
 		int sex) : HumanEntity(Fname, Lname, age, sex)
 	{
-	
+
 		this->phone = phone;
 		this->adr = new AdressInfo(city, street, houseN, flatN);
+	}
+	Person(string phone, string Fname, string Lname, int age, int sex) : HumanEntity(Fname, Lname, age, sex)
+	{
+		this->phone = phone;
+	}
+
+	void setPhone(string phone)
+	{
+		this->phone = phone;
+	}
+	void setAdress(AdressInfo *adr)
+	{
+		this->adr = adr;
+	}
+
+	string getPhone()
+	{
+		return phone;
+	}
+	AdressInfo * getAdress()
+	{
+		return adr;
 	}
 	friend ostream& operator << (ostream& os, const Person& data)
 	{
@@ -41,6 +67,7 @@ public:
 			<< *data.adr << endl;
 		return os;
 	}
+
 	~Person() {};
 };
 
