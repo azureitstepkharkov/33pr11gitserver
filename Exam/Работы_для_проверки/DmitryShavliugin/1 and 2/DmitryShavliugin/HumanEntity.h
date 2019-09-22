@@ -7,8 +7,11 @@ protected:
 	string FirstName;
 	string LastName;
 	HumanEntity() {};
-	HumanEntity(const HumanEntity& obj) { cout << "HumanEntity& obj" << endl; };
 public:
+	HumanEntity(const HumanEntity& obj) { 
+		this->FirstName = obj.FirstName;
+		this->LastName = obj.LastName;
+	};
 	HumanEntity(string FistName_value, string LastName_value) {
 		this->FirstName = FistName_value;
 		this->LastName = LastName_value;

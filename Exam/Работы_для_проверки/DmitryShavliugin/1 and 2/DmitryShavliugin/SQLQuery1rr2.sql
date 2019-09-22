@@ -1,0 +1,189 @@
+CREATE DATABASE mssql_testdb_l05_33pr11 
+
+CREATE TABLE Manufacturer
+(
+Id INT IDENTITY ,
+Name NVARCHAR(50)
+
+CONSTRAINT PK_Manufacturer_Id PRIMARY KEY (Id)
+)
+
+INSERT INTO
+Manufacturer(Name)
+VALUES 
+('Агрофирма Херсон'),
+('Фермер Вася Пяточкин'),
+('Бабушка Клава'),
+('Турецкий Басурман'),
+('Батько Бульбаш'),
+('Samsung'),
+('LG'),
+('Рошен'),
+('Свиточ')
+
+CREATE TABLE Customers 
+(
+Id INT IDENTITY,
+Name NVARCHAR(50)
+
+CONSTRAINT PK_Customers_Id PRIMARY KEY (Id)
+)
+
+INSERT INTO
+Customers(Name)
+VALUES 
+('Петр'),
+('Иван'),
+('Александр'),
+('Катюша'),
+('Маричка'),
+('Боб'),
+('Мартын'),
+('Кузя')
+
+
+CREATE TABLE Products 
+(
+Id INT IDENTITY,
+Name NVARCHAR(10),
+Id_Manufacturer INT,
+ProductCount INT,
+Price MONEY,
+
+CONSTRAINT PK_Products_Id PRIMARY KEY (Id),
+CONSTRAINT FK_Products_To_Manufacturer FOREIGN KEY (Id_Manufacturer)  REFERENCES Manufacturer (Id)
+)
+
+INSERT INTO Products
+(Name, Id_Manufacturer, ProductCount, Price)
+VALUES
+('Арбуз', (SELECT Id FROM Manufacturer  WHERE Name ='Агрофирма Херсон'), 100, 50),
+('Дыня', (SELECT Id FROM Manufacturer  WHERE Name ='Фермер Вася Пяточкин'), 15, 45),
+('Яблоко', (SELECT Id FROM Manufacturer  WHERE Name ='Бабушка Клава'), 500, 20),
+('Персик', (SELECT Id FROM Manufacturer  WHERE Name ='Турецкий Басурман'), 333, 70),
+('Картошка', (SELECT Id FROM Manufacturer  WHERE Name ='Батько Бульбаш'), 1000, 15),
+('Огурец', (SELECT Id FROM Manufacturer  WHERE Name ='Фермер Вася Пяточкин'), 456, 15),
+('Помидор', (SELECT Id FROM Manufacturer  WHERE Name ='Фермер Вася Пяточкин'), 35, 23),
+('Груша', (SELECT Id FROM Manufacturer  WHERE Name ='Бабушка Клава'), 20, 18),
+('Шоколад', (SELECT Id FROM Manufacturer  WHERE Name ='Свиточ'), 55, 100)
+
+
+CREATE TABLE Orders 
+(
+Id INT IDENTITY,
+CreatedAt DATE,
+ProductId INT, 
+CustomerId INT,
+ProductCount INT,
+Price MONEY
+
+CONSTRAINT PK_Orders_Id PRIMARY KEY (Id),
+CONSTRAINT FK_Orders_To_Customers FOREIGN KEY (CustomerId)  REFERENCES Customers (Id),
+CONSTRAINT FK_Orders_To_Products FOREIGN KEY (ProductId)  REFERENCES Products (Id),
+)
+
+
+INSERT INTO Orders
+(CreatedAt, ProductId,CustomerId,ProductCount,Price)
+VALUES
+
+( '01-09-2019',
+(SELECT Id FROM Products WHERE Name ='Арбуз'),
+(SELECT Id FROM Customers WHERE Name ='Иван'),
+2,
+(SELECT Price FROM Products WHERE Name ='Арбуз')
+),
+
+( '2019-08-31',
+(SELECT Id FROM Products WHERE Name ='Дыня'),
+(SELECT Id FROM Customers WHERE Name ='Петр'),
+1,
+(SELECT Price FROM Products WHERE Name ='Дыня')
+),
+
+( '2019-08-30', 
+(SELECT Id FROM Products WHERE Name ='Яблоко'),
+(SELECT Id FROM Customers WHERE Name ='Маричка'),
+5,
+(SELECT Price FROM Products WHERE Name ='Яблоко')
+),
+
+( '2019-08-29',
+(SELECT Id FROM Products WHERE Name ='Персик'),
+(SELECT Id FROM Customers WHERE Name ='Катюша'),
+3,
+(SELECT Price FROM Products WHERE Name ='Персик')
+),
+
+( '2019-09-02',
+(SELECT Id FROM Products WHERE Name ='Картошка'),
+(SELECT Id FROM Customers WHERE Name ='Александр'),
+11,
+(SELECT Price FROM Products WHERE Name ='Картошка')
+),
+
+( '2019-09-03',
+(SELECT Id FROM Products WHERE Name ='Помидор'),
+(SELECT Id FROM Customers WHERE Name ='Катюша'),
+9,
+(SELECT Price FROM Products WHERE Name ='Картошка')
+),
+
+( '2019-08-31',
+(SELECT Id FROM Products WHERE Name ='Огурец'),
+(SELECT Id FROM Customers WHERE Name ='Катюша'),
+4,
+(SELECT Price FROM Products WHERE Name ='Огурец')
+),
+
+( '2019-08-29',
+(SELECT Id FROM Products WHERE Name ='Груша'),
+(SELECT Id FROM Customers WHERE Name ='Маричка'),
+6,
+(SELECT Price FROM Products WHERE Name ='Груша')
+)
+
+
+select * from Products p, Manufacturer m, Orders o, Customers c
+where
+p.Id_Manufacturer= m.Id
+and
+o.ProductId = p.Id
+and 
+o.CustomerId = c.Id
+
+select o.*,c.*
+from
+	Products p, Manufacturer m,
+	Orders o, Customers c
+where
+p.Id_Manufacturer = m.Id
+and
+o.ProductId = p.Id
+and
+o.CustomerId = c.Id
+
+select o.*, c.Name, p.Name, m.Name				-- .* ????
+	from Orders o
+	inner join Customers c 
+		on c.Id =  o.CustomerId			--inner join vs join vs outer (left join, right join) vs full join vs cross
+	join Products p
+		on o.ProductId = p.Id
+	join Manufacturer m
+		on p.Id_Manufacturer = m.Id
+where
+	p.Name = 'Арбуз'
+
+
+select o.*, c.Name
+	from Orders o
+	Full join Customers c 
+		on c.Id =  o.CustomerId
+
+select 1 as typeCotrAgent, m.Name
+from Manufacturer m
+Union								--union vs union all
+select 2 as typeCotrAgent,
+	   c.Name		
+from Customers c
+order by 1							--sort
