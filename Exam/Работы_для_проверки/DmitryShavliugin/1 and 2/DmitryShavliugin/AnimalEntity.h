@@ -7,8 +7,11 @@ protected:
 	string sex;
 	int age;
 	AnimalEntity() {};
-	AnimalEntity(const AnimalEntity& obj) { cout << "AnimalEntity& obj" << endl; };
 public:
+	AnimalEntity(const AnimalEntity& obj) { 
+		this->sex = obj.sex;
+		this->age = obj.age;
+	};
 	AnimalEntity(string sex_value, int age_value) {
 		this->sex = sex_value;
 		this->age = age_value;

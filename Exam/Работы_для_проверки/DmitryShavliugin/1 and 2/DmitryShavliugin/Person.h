@@ -7,8 +7,11 @@ protected:
 	string number;
 	AdressInfo* adr;
 	Person() {};
-	Person(const Person& obj) { cout << "Person& obj" << endl; };
 public:
+	Person(const Person& obj) { 
+		this->number = obj.number;
+		this->adr = obj.adr;
+	};
 	Person(string number_value, AdressInfo* a) {
 		this->number = number_value;
 		this->adr = a;
@@ -21,8 +24,7 @@ public:
 
 	friend ostream& operator << (ostream& os, Person& a)
 	{
-		os << "Person(Number: " << a.number<<")"; //<<*a.adr
-		//os << "Adress(City: " << a.adr->getCity << ", Street: " << a.adr->getStreet << ", House Number: " << a.adr->getHouseNumber << ", Apartment Number: " << a.adr->getApartmentNumber << ")";
+		os << "Person(Number: " << a.number << "), " << *a.adr;
 		return os;
 	};
 

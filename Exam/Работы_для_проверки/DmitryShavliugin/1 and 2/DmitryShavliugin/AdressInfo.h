@@ -11,8 +11,13 @@ protected:
 	int houseNumber;
 	int apartmentNumber;
 	AdressInfo() {};
-	AdressInfo(const AdressInfo& obj) { cout << "AdressInfo& obj" << endl; };
 public:
+	AdressInfo(const AdressInfo& obj) { 
+		this->city = obj.city;
+		this->street = obj.street;
+		this->houseNumber = obj.houseNumber;
+		this->apartmentNumber = obj.apartmentNumber;
+	};
 	AdressInfo(string city_value, string street_value, int houseNumber_value, int apartmentNumber_value) {
 		this->city = city_value;
 		this->street = street_value;

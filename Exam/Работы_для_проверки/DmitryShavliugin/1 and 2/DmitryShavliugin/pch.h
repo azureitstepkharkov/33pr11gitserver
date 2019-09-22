@@ -14,6 +14,9 @@
 #include<string>
 #include<list>
 
+#include <vector>
+#include <algorithm>
+
 #include"AdressInfo.h"
 #include"AnimalEntity.h"
 #include"HumanEntity.h"
