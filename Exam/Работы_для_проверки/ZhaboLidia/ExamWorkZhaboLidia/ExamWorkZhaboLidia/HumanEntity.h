@@ -40,7 +40,7 @@ public:
 	}
 
 
-	friend ostream& operator << (ostream& os, const HumanEntity& data)
+	friend ostream& operator << (ostream& os,  HumanEntity& data)
 	{
 		os << "First Name: " << data.FirstName
 			<< "\n"

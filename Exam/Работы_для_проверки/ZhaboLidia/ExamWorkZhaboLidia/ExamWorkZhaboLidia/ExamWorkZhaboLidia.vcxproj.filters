@@ -39,6 +39,24 @@
     <ClInclude Include="Department.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Rule1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rule2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RUle3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rule4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ISalaryCalculator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CalcInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
