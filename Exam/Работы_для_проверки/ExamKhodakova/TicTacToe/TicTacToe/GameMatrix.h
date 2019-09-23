@@ -3,11 +3,13 @@
 using namespace std;
 class GameMatrix
 {
+	
+	void startMatrix();
+protected:
 	int ** matrix;
 	int sizeX = 3;
 	int sizeY = 3;
-protected:
-	void startMatrix();
+	
 public:
 	GameMatrix();
 	GameMatrix(int sizeBoard);

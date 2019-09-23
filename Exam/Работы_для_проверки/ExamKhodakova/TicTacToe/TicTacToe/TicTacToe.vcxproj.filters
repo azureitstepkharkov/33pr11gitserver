@@ -42,6 +42,9 @@
     <ClInclude Include="GameBoard.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
+    <ClInclude Include="TicTacToe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -55,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="GameBoard.cpp">
       <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
