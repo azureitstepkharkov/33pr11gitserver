@@ -8,7 +8,7 @@ void GameMatrix::startMatrix()
 	{
 		for (int i = 0; i < this->sizeX; i++)
 		{
-			this->matrix[j][i] = 2;
+			this->matrix[j][i] = 2;//это значение при печати будет пустой ячейкой
 
 		}
 
@@ -18,10 +18,25 @@ void GameMatrix::startMatrix()
 
 GameMatrix::GameMatrix()
 {
+	this->sizeX = 3;
+	this->sizeY = 3;
 	this->matrix = new int*[this->sizeY];
 	for (int j = 0; j < this->sizeY; j++)
 	{
 		this->matrix[j]= new int[this->sizeX];
+	}
+
+	this->startMatrix();
+}
+
+GameMatrix::GameMatrix(int sizeBoard)
+{
+	this->sizeX = sizeBoard;
+	this->sizeY = sizeBoard;
+	this->matrix = new int*[this->sizeY];
+	for (int j = 0; j < this->sizeY; j++)
+	{
+		this->matrix[j] = new int[this->sizeX];
 	}
 
 	this->startMatrix();
@@ -72,12 +87,12 @@ void GameMatrix::setO(int i, int j)
 	else cout << "Вы вышли за диапазон!!!" << endl;
 }
 
-int GameMatrix::SizeX()
+int GameMatrix::getSizeX()
 {
 	return this->sizeX;
 }
 
-int GameMatrix::SizeY()
+int GameMatrix::getSizeY()
 {
 	return this->sizeY;
 }

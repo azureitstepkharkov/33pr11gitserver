@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Model">
       <UniqueIdentifier>{d2108922-364d-458f-89a7-555a348a0b53}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\View">
+      <UniqueIdentifier>{a3549d7a-f825-463c-a193-faecb7b289a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -49,6 +52,9 @@
     </ClCompile>
     <ClCompile Include="GameMatrix.cpp">
       <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBoard.cpp">
+      <Filter>Source Files\View</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
